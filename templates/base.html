@@ -1,0 +1,151 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Codedaddies List</title>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="stylesheet" href="{% static "css/style.css" %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script type="text/javascript" src=
+        "https://code.jquery.com/jquery-2.1.1.min.js">
+    </script>
+<!--	<script type="text/javascript" src=-->
+<!--        "https://code.jquery.com/jquery-2.1.1.min.js">-->
+<!--    </script>-->
+</head>
+<body>
+<nav>
+	<div class="container nav-wrapper">
+		<a href="/" class="brand-logo">Codedaddies List</a>
+		<ul id="nav-mobile" class="right">
+			<li><a href="/">Home</a></li>
+		</ul>
+	</div>
+</nav>
+<div class="container">
+	<h1 style ="text-align: center">What do you want to search for on Codedaddies list</h1>
+	<div class="row">
+		<div class="col s4">
+<!--			 Promo Content 1 goes here-->
+			<div class="center">
+				<i class="large material-icons" style="color: #EE6E73">flash_on</i>
+				<p>Fast craigslist web scrapper</p>
+				<p class="light center">Scrape away right here with a beautiful GUI.</p>
+			</div>
+		</div>
+
+		<div class="col s4">
+			<!--			 Promo Content 2 goes here-->
+			<div class="center">
+				<i class="large material-icons" style="color: orange">camera</i>
+				<p>Filter your searches</p>
+				<p class="light center">We built in functionality to filter anything based on pricing.</p>
+			</div>
+		</div>
+
+		<div class="col s4">
+			<!--			 Promo Content 3 goes here-->
+			<div class="center">
+				<i class="large material-icons" style="color: blue">chrome_reader_mode</i>
+				<p>A much sexier frontend to Craigslist</p>
+				<p class="light center">We built this with ❤.</p>
+			</div>
+		</div>
+	</div>
+
+	<form action="{% url 'new_search' %}" method="post">
+        {% csrf_token %}
+		<label for="search">Your Text Here:</label>
+        <input type="text" id="search" name="search" placeholder="Please enter your text here...">
+
+        <div class="input-field col s12 inline">
+            <select name="location" class="location">
+                <option value="" disabled>Pick A Location</option>
+                {% for link_text in link_texts %}
+                    {% for sub_header in sub_headers %}
+                        {% if sub_header == link_text %}
+                            <option value="{{ link_text }}" disabled>{{ link_text }}</option>
+                        {% endif %}
+                    {% endfor %}
+                    {% for header in headers %}
+                        {% if header == link_text %}
+                            <option value="{{ link_text }}" disabled>{{ link_text }}</option>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if link_text not in headers and link_text not in sub_headers%}
+                        <option value="{{ link_text }}">{{ link_text }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+			<label>Pick A Location</label>
+        </div>
+
+		<div class="input-field col s12 inline" style="width:300px">
+			<select name="sort">
+				<option value="" disabled>Sort By:</option>
+				<option value="upcoming" id="upcoming">Upcoming</option>
+				<option value="date" id="date">Newest</option>
+				<option value="rel" id="rel" selected>Relevant</option>
+				<option value="priceasc" id="pricasc">Price (Ascending)</option>
+				<option value="pricedsc" id="pricedsc)">Price (Descending)</option>
+			</select>
+			<label>Sort by:</label>
+		</div>
+
+		<div class="right input-field col s12 inline" style="width:300px">
+			<select name="sections">
+				<option value="" disabled>Sections:</option>
+				<option value="ccc" id="ccc">Community</option>
+				<option value="eee" id="eee">Events</option>
+				<option value="sss" id="sss" selected>For Sale</option>
+				<option value="ggg" id="ggg">Gigs</option>
+				<option value="hhh" id="hhh">Housing</option>
+				<option value="jjj" id="jjj">Jobs</option>
+				<option value="rrr" id="rrr">Resumes</option>
+				<option value="bbb" id="bbb">Services</option>
+			</select>
+			<label>Select results section....</label>
+		</div>
+        <br>
+<!--        <label for="filter-search">Filter Your Search</label>-->
+<!--        <input type="checkbox" class="filled-in" name="filter-search" id="filter-search">-->
+        <h5><b>PRICE FILTER:</b></h5>
+        <div class="row">
+<!--            <label for="min_price">Price</label><br>-->
+            <div class="col s4">
+                <div class=right-1/3>
+                <input type="tel" id="min_price" name="min_price" placeholder="min price" style="width:100px">
+                </div>
+            </div>
+            <div class="col s4">
+                <input type="tel" id = "max_price" name="max_price" placeholder="max price" style="width:100px">
+            </div>
+        </div>
+		<br>
+        <button class="right btn waves-effect orange" type="submit" name="action" style="width:180px" id="search-button">
+		<span style="font-size:20px">Search</span><i class="material-icons right"><span style="font-size:30px">search</span></i>
+        </button>
+    </form>
+
+<!--	</div>-->
+
+	{% block content %}
+
+	{% endblock content %}
+
+</div>
+
+<script>
+	$(document).ready(function () {
+		$("select").material_select();
+	});
+</script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+</body>
+</HTML>
+

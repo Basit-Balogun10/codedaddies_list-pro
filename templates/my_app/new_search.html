@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<div class="container">
+		<div class="center">
+			<h2 style="text-align: center">{{ search | upper }}</h2>
+			<p><b><span>Section: {{ front_end_detail.0 }}</span></b></p>
+			<p><b><span>Sorted By: {{ front_end_detail.1 }}</span></b></p>
+		</div>
+	</div>
+	<div class="row">
+		{% for post in final_postings %}
+			<div class="col s4">
+				<div class="card">
+					<div class="card-image">
+						<a href="{{ post.1 }}"><img src="{{ post.3 }}" alt=""></a>
+					</div>
+					<div class="card-content">
+						<p><b>{{ post.4 }}</b><br/>{{ post.0 }}</p>
+					</div>
+					<div class="card-action">
+						<a href="{{ post.1 }}">View listing: Price {{ post.2 }}</a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+
+{% endblock content %}
