@@ -7,6 +7,9 @@
 			<p><b><span>Section: {{ front_end_detail.0 }}</span></b></p>
 			<p><b><span>Sorted By: {{ front_end_detail.1 }}</span></b></p>
 		</div>
+		{% if error == True %}
+			<h2 style="text-align: center color: red">Nothing found for that search. (All words must match.)</h2>
+		{% endif %}
 	</div>
 	<div class="row">
 		{% for post in final_postings %}

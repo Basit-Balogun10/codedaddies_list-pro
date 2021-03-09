@@ -59,11 +59,11 @@
 	<form action="{% url 'new_search' %}" method="post">
         {% csrf_token %}
 		<label for="search">Your Text Here:</label>
-        <input type="text" id="search" name="search" placeholder="Please enter your text here...">
+        <input type="text" id="search" name="search" placeholder="Please enter your text here..." required>
 
         <div class="input-field col s12 inline">
             <select name="location" class="location">
-                <option value="" disabled>Pick A Location</option>
+                <option value="" disabled selected>Pick A Location</option>
                 {% for link_text in link_texts %}
                     {% for sub_header in sub_headers %}
                         {% if sub_header == link_text %}
@@ -110,6 +110,51 @@
 			</select>
 			<label>Select results section....</label>
 		</div>
+
+        <div class="input-field col s12 inline" style="width:300px">
+			<select name="min-bedroom-filter">
+				<option value="" disabled selected>Min Bedroom:</option>
+				<option value="2" id="min-2">2</option>
+				<option value="3" id="min-3">3</option>
+				<option value="4" id="min-4">4</option>
+				<option value="5" id="min-5">5</option>
+				<option value="6" id="min-6">6</option>
+				<option value="7" id="min-7">7</option>
+				<option value="8" id="min-8">8</option>
+			</select>
+			<label>Min Bedroom:</label>
+
+        <div class="input-field col s12 inline" style="width:300px">
+        <select name="max-bedroom-filter">
+            <option value="" disabled selected>Max Bedroom:</option>
+            <option value="2" id="max-2">2</option>
+            <option value="3" id="max-3">3</option>
+            <option value="4" id="max-4">4</option>
+            <option value="5" id="max-5">5</option>
+            <option value="6" id="max-6">6</option>
+            <option value="7" id="max-7">7</option>
+            <option value="8" id="max-8">8</option>
+        </select>
+        <label>Max Bedroom:</label>
+
+        <div class="input-field col s12 inline" style="width:300px">
+        <select name="min-bathroom-filter">
+            <option value="" disabled selected>Min Bathroom:</option>
+            <option value="2" id="min-bath-2">2</option>
+            <option value="3" id="min-bath-3">3</option>
+            <option value="4" id="min-bath-4">4</option>
+        </select>
+        <label>Min Bathroom:</label>
+
+        <div class="input-field col s12 inline" style="width:300px">
+        <select name="max-bathroom-filter">
+            <option value="" disabled selected>Max Bathroom:</option>
+            <option value="2" id="max-bath-2">2</option>
+            <option value="3" id="max-bath-3">3</option>
+            <option value="4" id="max-bath-4">4</option>
+        </select>
+        <label>Max Bedroom:</label>
+        <br>
         <br>
 <!--        <label for="filter-search">Filter Your Search</label>-->
 <!--        <input type="checkbox" class="filled-in" name="filter-search" id="filter-search">-->
