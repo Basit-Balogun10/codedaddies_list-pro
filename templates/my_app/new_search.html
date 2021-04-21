@@ -1,32 +1,92 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
+<!--<button id="myBtn" onclick="topFunction()" title="Go to top">-->
+<!--  <i class="fas fa-angle-up fa-3x"></i>-->
+<!--</button>-->
+<!--<button id="myBtn" onclick="bottomFunction()" title="Go to bottom">-->
+<!--  <i class="fas fa-angle-down fa-3x"></i>-->
+<!--</button>-->
 
-{% block content %}
-	<div class="container">
-		<div class="center">
-			<h2 style="text-align: center">{{ search | upper }}</h2>
-			<p><b><span>Section: {{ front_end_detail.0 }}</span></b></p>
-			<p><b><span>Sorted By: {{ front_end_detail.1 }}</span></b></p>
-		</div>
-		{% if error == True %}
-			<h2 style="text-align: center color: red">Nothing found for that search. (All words must match.)</h2>
-		{% endif %}
-	</div>
-	<div class="row">
-		{% for post in final_postings %}
-			<div class="col s4">
-				<div class="card">
-					<div class="card-image">
-						<a href="{{ post.1 }}"><img src="{{ post.3 }}" alt=""></a>
-					</div>
-					<div class="card-content">
-						<p><b>{{ post.4 }}</b><br/>{{ post.0 }}</p>
-					</div>
-					<div class="card-action">
-						<a href="{{ post.1 }}">View listing: Price {{ post.2 }}</a>
-					</div>
-				</div>
-			</div>
-		{% endfor %}
-	</div>
+<div class="container">
+  <div class="center">
+    <h2 style="text-align: center">{{ search | upper }}</h2>
+    <p>
+      <b><span>Section: {{ front_end_detail.0 }}</span></b>
+    </p>
+    <p>
+      <b><span>Sorted By: {{ front_end_detail.1 }}</span></b>
+    </p>
+  </div>
+  {% if result_not_found == True %}
+  <h5 style="text-align: center; color: red">
+    Nothing found for that search. (All words must match.)
+  </h5>
+  {% endif %} {% if nearby_results == True %}
+  <h5 style="text-align: center">
+    Zero local results found. Here are some from nearby areas. Checking 'include
+    nearby areas' will expand your search.
+  </h5>
+  {% endif %}
+</div>
+<!--<button id="myBtn" onclick="topFunction()" title="Go to top">-->
+<!--  <i class="fas fa-angle-up fa-3x"></i>-->
+<!--</button>-->
+<!--<button id="myBtn" onclick="bottomFunction()" title="Go to bottom">-->
+<!--  <i class="fas fa-angle-down fa-3x"></i>-->
+<!--</button>-->
+
+<div class="row">
+  {% for post in final_postings %}
+  <div class="col s4">
+    <div class="card" id="card">
+      <div class="card-image">
+        <!-- <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a> -->
+        <a href="javascript:void(0)">
+          <button
+            class="image-changer btn-floating halfway-fab waves-effect waves-light rgb(238, 110, 115)"
+            id="previous-button"
+            onmouseover="keepItemsVisible(this)"
+            onmouseout="revertMouseOverEvent(this)"
+            onclick="previousImage(this)"
+            title="Show previous image"
+          >
+            <!-- <i class="fas fa-angle-up fa-2x fa-rotate-270"></i> -->
+            <i class="fas fa-angle-up fa-rotate-270"></i></button
+        ></a>
+
+        <a href="{{ post.1 }}"
+          ><img
+            onmouseover="displayButtons(this)"
+            onmouseout="hideButtons(this)"
+            class="{{ forloop.counter0 }} 0"
+            src="{{ post.3.0 }}"
+            alt=""
+        /></a>
+
+        <a href="javascript:void(0)">
+          <button
+            class="image-changer image-changer btn-floating halfway-fab waves-effect waves-light rgb(238, 110, 115)"
+            id="next-button"
+            onmouseover="keepItemsVisible(this)"
+            onmouseout="revertMouseOverEvent(this)"
+            onclick="nextImage(this)"
+            title="Show next image"
+          >
+            <!-- <i class="fas fa-angle-up fa-2x fa-rotate-90"></i> -->
+            <i class="fas fa-angle-up fa-rotate-90"></i></button
+        ></a>
+      </div>
+      <div class="card-content" id="card-content">
+        <span class="card-title" id="card-title"></span>
+        <p><b id="post-datetime">{{ post.4 }}</b><br />{{ post.0 }}</p>
+      </div>
+      <div class="card-action">
+        <a href="{{ post.1 }}" id="card-action"
+          >View listing: Price {{ post.2 }}</a
+        >
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
 
 {% endblock content %}

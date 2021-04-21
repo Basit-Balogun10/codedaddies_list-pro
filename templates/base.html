@@ -6,12 +6,14 @@
 	<title>Codedaddies List</title>
 	<meta charset="UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<link rel="stylesheet" href="{% static "css/style.css" %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<script type="text/javascript" src=
         "https://code.jquery.com/jquery-2.1.1.min.js">
     </script>
+	<script crossorigin="anonymous" src="https://kit.fontawesome.com/8e8ce04397.js"></script>
+	<script src="{% static 'javascript/test.js' %}"></script>
 <!--	<script type="text/javascript" src=-->
 <!--        "https://code.jquery.com/jquery-2.1.1.min.js">-->
 <!--    </script>-->
@@ -62,6 +64,7 @@
         <input type="text" id="search" name="search" placeholder="Please enter your text here..." required>
 
         <div class="input-field col s12 inline">
+			<!-- <a style="cursor: pointer;">About</a> -->
             <select name="location" class="location">
                 <option value="" disabled selected>Pick A Location</option>
                 {% for link_text in link_texts %}
@@ -123,39 +126,43 @@
 				<option value="8" id="min-8">8</option>
 			</select>
 			<label>Min Bedroom:</label>
+		</div>
 
         <div class="input-field col s12 inline" style="width:300px">
-        <select name="max-bedroom-filter">
-            <option value="" disabled selected>Max Bedroom:</option>
-            <option value="2" id="max-2">2</option>
-            <option value="3" id="max-3">3</option>
-            <option value="4" id="max-4">4</option>
-            <option value="5" id="max-5">5</option>
-            <option value="6" id="max-6">6</option>
-            <option value="7" id="max-7">7</option>
-            <option value="8" id="max-8">8</option>
-        </select>
-        <label>Max Bedroom:</label>
+			<select name="max-bedroom-filter">
+				<option value="" disabled selected>Max Bedroom:</option>
+				<option value="2" id="max-2">2</option>
+				<option value="3" id="max-3">3</option>
+				<option value="4" id="max-4">4</option>
+				<option value="5" id="max-5">5</option>
+				<option value="6" id="max-6">6</option>
+				<option value="7" id="max-7">7</option>
+				<option value="8" id="max-8">8</option>
+			</select>
+			<label>Max Bedroom:</label>
+		</div>
 
         <div class="input-field col s12 inline" style="width:300px">
-        <select name="min-bathroom-filter">
-            <option value="" disabled selected>Min Bathroom:</option>
-            <option value="2" id="min-bath-2">2</option>
-            <option value="3" id="min-bath-3">3</option>
-            <option value="4" id="min-bath-4">4</option>
-        </select>
-        <label>Min Bathroom:</label>
+			<select name="min-bathroom-filter">
+				<option value="" disabled selected>Min Bathroom:</option>
+				<option value="2" id="min-bath-2">2</option>
+				<option value="3" id="min-bath-3">3</option>
+				<option value="4" id="min-bath-4">4</option>
+			</select>
+			<label>Min Bathroom:</label>
+		</div>
 
         <div class="input-field col s12 inline" style="width:300px">
-        <select name="max-bathroom-filter">
-            <option value="" disabled selected>Max Bathroom:</option>
-            <option value="2" id="max-bath-2">2</option>
-            <option value="3" id="max-bath-3">3</option>
-            <option value="4" id="max-bath-4">4</option>
-        </select>
-        <label>Max Bedroom:</label>
-        <br>
-        <br>
+			<select name="max-bathroom-filter">
+				<option value="" disabled selected>Max Bathroom:</option>
+				<option value="2" id="max-bath-2">2</option>
+				<option value="3" id="max-bath-3">3</option>
+				<option value="4" id="max-bath-4">4</option>
+			</select>
+			<label>Max Bedroom:</label>
+			<br>
+			<br>
+		</div>
 <!--        <label for="filter-search">Filter Your Search</label>-->
 <!--        <input type="checkbox" class="filled-in" name="filter-search" id="filter-search">-->
         <h5><b>PRICE FILTER:</b></h5>
@@ -176,6 +183,20 @@
         </button>
     </form>
 
+	<!-- <div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">Dropdown</button> -->
+	<div id="myDropdown" class="dropdown-content">
+		<input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+		<a href="#about">About</a>
+		<a href="#base">Base</a>
+		<a href="#blog">Blog</a>
+		<a href="#contact">Contact</a>
+		<a href="#custom">Custom</a>
+		<a href="#support">Support</a>
+		<a href="#tools">Tools</a>
+	</div>
+<!-- </div> -->
+
 <!--	</div>-->
 
 	{% block content %}
@@ -191,6 +212,10 @@
 </script>
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+<script type="text/javascript" src=
+    "{% static 'javascript/index.js' %}">
+</script>
 </body>
 </HTML>
 
+ 
